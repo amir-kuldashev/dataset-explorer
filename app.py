@@ -16,7 +16,7 @@ MAIN_COLOR = "#8B97FF"   # same as primaryColor in .streamlit/config.toml
 FLAG_COLOR = "#F5A524"   # same as orangeColor: something that needs a look
 TEXT_COLOR = "#E7EAF6"   # same as textColor
 MUTED_COLOR = "#9AA3C2"
-LINE_COLOR = "#273150"   # same as borderColor
+LINE_COLOR = "#3A4772"   # same as borderColor
 MAX_FILE_MB = 5
 MAX_FILE_BYTES = MAX_FILE_MB * 1024 * 1024
 PREVIEW_ROWS = 100
@@ -342,7 +342,7 @@ st.set_page_config(page_title="Dataset Explorer", page_icon=":material/table_vie
 
 # Layout touches the theme cannot set: the glowing backdrop, glass widgets, page width, display numbers
 # and the specimen table. Glass = a translucent fill over a blurred copy of the backdrop behind it.
-GLASS = "background: rgba(255, 255, 255, 0.045); border: 1px solid rgba(255, 255, 255, 0.11); " \
+GLASS = "background: rgba(255, 255, 255, 0.045); border: 1px solid rgba(255, 255, 255, 0.18); " \
         "backdrop-filter: blur(18px) saturate(150%); -webkit-backdrop-filter: blur(18px) saturate(150%);"
 st.html(f"""
 <style>
@@ -396,7 +396,7 @@ st.html(f"""
   [data-testid="stCaptionContainer"] {{ font-variant-numeric: tabular-nums; }}
   [data-testid="stTabs"] button[role="tab"] p {{ font-size: 1rem; }}
   /* Tables stay solid: a blurred grid is hard to read. A soft edge keeps them in the same family. */
-  [data-testid="stDataFrame"] {{ border-radius: 10px; overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22); }}
+  [data-testid="stDataFrame"] {{ border-radius: 10px; overflow: hidden; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16), 0 8px 24px rgba(0, 0, 0, 0.22); }}
   /* Without backdrop blur, use a slightly denser fill so text stays readable. */
   @supports not (backdrop-filter: blur(1px)) {{
     [data-testid="stMetric"], [data-testid="stExpander"] details, [data-testid="stFileUploaderDropzone"], [data-testid="stAlert"], .specimen {{
