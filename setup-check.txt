@@ -1,0 +1,57 @@
+AI/ML Fundamentals - Environment Setup Check
+Generated: 2026-10-22 10:06:47 +05 (re-run after renaming folder M2C6 -> Dataset_Explorer; .venv rebuilt)
+
+== System ==
+Project folder: /home/amir/Projects/AI_ML/Dataset_Explorer
+OS: Omarchy (Arch-based Linux), kernel 7.2.5-3-omarchy
+Architecture: x86_64
+Shell: /usr/bin/bash
+
+== Tools ==
+Git (reused, system): git version 2.55.0
+System Python (left untouched): Python 3.14.7 at /usr/bin/python3
+Project Python (installed for this user via mise): Python 3.13.16
+  at /home/amir/.local/share/mise/installs/python/3.13.16
+Virtual environment interpreter: /home/amir/Projects/AI_ML/Dataset_Explorer/.venv/bin/python
+
+== Files created (setup only) ==
+requirements.txt  - folder had no dependency file; lists pandas, numpy, matplotlib, scikit-learn, streamlit
+.python-version   - pins 3.13
+.venv/            - virtual environment
+.vscode/settings.json - tells VS Code to use .venv/bin/python
+setup-check.txt   - this file
+
+== Check 1: version + import check with .venv/bin/python  [PASSED] ==
+Interpreter: /home/amir/Projects/AI_ML/Dataset_Explorer/.venv/bin/python
+Python: 3.13.16
+pandas: 3.0.6
+numpy: 2.5.4
+matplotlib: 3.11.2
+sklearn: 1.9.1
+streamlit: 1.66.1
+sklearn smoke test predict(4): 8.0
+pandas smoke test: {'a': 3}
+READY
+
+== Check 2: pip check  [PASSED] ==
+No broken requirements found.
+
+== Check 3: streamlit version  [PASSED] ==
+Streamlit, version 1.66.1
+
+== Check 4: Streamlit demo server (streamlit hello, port 8501)  [PASSED] ==
+health: ok
+root HTTP status: 200
+
+== Check 5: browser page inspection  [PASSED] ==
+Opened http://localhost:8501 in Chrome after the rename; page title 'Hello', text began: 'Welcome to Streamlit! 👋'
+
+== Demo URL ==
+http://localhost:8501
+(The demo runs only while the Claude Code session that started it is running. After a restart it will be stopped.)
+
+== Starting it again later ==
+Open Claude Code in this folder and say:
+  "Start the Streamlit demo again using the .venv in this folder and give me the link."
+To re-check the environment, say:
+  "Re-run the setup checks in setup-check.txt and tell me if everything is still READY."

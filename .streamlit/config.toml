@@ -1,0 +1,28 @@
+# Dark theme. Colours are chosen for meaning: periwinkle = this app / links / charts,
+# amber = something that needs a look, mint = all good.
+[theme]
+base = "dark"
+primaryColor = "#8B97FF"
+backgroundColor = "#0B1020"
+secondaryBackgroundColor = "#141B31"
+textColor = "#E7EAF6"
+linkColor = "#8B97FF"
+borderColor = "#273150"
+dataframeBorderColor = "#273150"
+dataframeHeaderBackgroundColor = "#1A2240"
+showWidgetBorder = true
+baseRadius = "0.375rem"
+buttonRadius = "0.375rem"
+orangeColor = "#F5A524"
+orangeTextColor = "#FFC46A"
+blueColor = "#8B97FF"
+greenColor = "#5FD4C4"
+greenTextColor = "#7FE3D6"
+font = "Atkinson Hyperlegible Next:https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;700&display=swap, sans-serif"
+headingFont = "Bricolage Grotesque:https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap, sans-serif"
+headingFontWeights = [800, 700, 700, 600, 600, 600]
+headingFontSizes = ["3.25rem", "1.75rem", "1.25rem"]
+codeFont = "JetBrains Mono:https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap, monospace"
+codeTextColor = "#B4BDFF"
+codeBackgroundColor = "#141B31"
+chartCategoricalColors = ["#8B97FF", "#F5A524", "#5FD4C4", "#F27AA3", "#C9A7FF"]

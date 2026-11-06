@@ -1,0 +1,27 @@
+{
+  "format_version": 1,
+  "run_id": "run-2026-11-04-a",
+  "dataset_id": "rentals-2026q3",
+  "split_id": "split-v3",
+  "features": [
+    "days",
+    "branch",
+    "vehicle_class",
+    "advance_days"
+  ],
+  "target": "late_return",
+  "positive_class": "yes",
+  "model": "logistic_regression",
+  "penalty": "l2",
+  "C": 1.0,
+  "seed": 42,
+  "threshold": 0.5,
+  "evaluation_split": "validation",
+  "metrics": {
+    "train_f1": 0.812,
+    "f1": 0.774,
+    "precision": 0.801,
+    "recall": 0.749
+  },
+  "note": "baseline"
+}

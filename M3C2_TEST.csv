@@ -1,0 +1,11 @@
+row_id,amount,note
+A,10,regular
+B,11,regular
+C,12,regular
+D,13,regular
+E,14,regular
+F,15,regular
+G,16,regular
+H,17,regular
+I,100,inspect
+J,,missing

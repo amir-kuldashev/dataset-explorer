@@ -1,0 +1,185 @@
+Dataset Explorer - Verification Checks
+Run: 2026-10-22 10:40 +05
+App: /home/amir/Projects/AI_ML/Dataset_Explorer/app.py   URL: http://localhost:8502
+Interpreter: /home/amir/Projects/AI_ML/Dataset_Explorer/.venv/bin/python (Python 3.13.16)
+
+Test files (created for this check, kept outside the project, not changed by the app):
+  spec.csv              category,value / A,10 / A,20 / B,(empty) / B,5 / B,5
+                        (byte-identical to check_dataset.csv now in the project folder)
+  text_only.csv         name,city / Anna,Paris / Ben,Rome
+  empty.csv             0 bytes
+  wrong_format.txt      one line of plain text
+  all_missing_group.csv category,value / A,10 / C,(empty) / C,NA
+
+==============================================================================
+PART A - AUTOMATED CHECKS
+Method: Streamlit AppTest runs the real app.py page; only the file picker is
+replaced by a test file. The checks read what the page actually displays.
+==============================================================================
+[PASS] spec.csv | No error shown
+       expected: no error
+       observed: no error
+[PASS] spec.csv | Rows
+       expected: 5
+       observed: 5
+[PASS] spec.csv | Columns
+       expected: 2
+       observed: 2
+[PASS] spec.csv | Extra duplicate rows
+       expected: 1
+       observed: 1
+[PASS] spec.csv | Missing in 'value'
+       expected: 1 (20%)
+       observed: 1 (20.0%)
+[PASS] spec.csv | Missing in 'category'
+       expected: 0 (0%)
+       observed: 0 (0.0%)
+[PASS] spec.csv | A total
+       expected: 30
+       observed: 30
+[PASS] spec.csv | B total
+       expected: 10
+       observed: 10
+[PASS] spec.csv | Missing-rows button
+       expected: Show rows with missing values (1)
+       observed: ['Show rows with missing values (1)']
+[PASS] spec.csv | Button shows the missing row
+       expected: 1 row: B, (missing)
+       observed: [{'category': 'B', 'value': nan}]
+[PASS] spec.csv | Counts unchanged after button
+       expected: Rows 5, Columns 2, Duplicates 1
+       observed: {'Rows': '5', 'Columns': '2', 'Extra duplicate rows': '1'}
+[PASS] text_only.csv | Overview still works
+       expected: Rows 2, Columns 2
+       observed: {'Rows': '2', 'Columns': '2', 'Extra duplicate rows': '0'}
+[PASS] text_only.csv | Chart unavailable message
+       expected: explains no numeric column
+       observed: ['The chart is not available: this file has no numeric column with at least one value. A column only counts as...
+[PASS] text_only.csv | No error shown
+       expected: no error
+       observed: no error
+[PASS] empty.csv | Empty-file message
+       expected: The file is empty...
+       observed: ['The file is empty. Please upload a CSV file that has a header row and data.']
+[PASS] empty.csv | No overview shown
+       expected: no metrics
+       observed: no metrics
+[PASS] wrong_format.txt | Wrong-type message
+       expected: ... is not a CSV file ...
+       observed: ['"wrong_format.txt" is not a CSV file. Please upload a file whose name ends in .csv.']
+[PASS] wrong_format.txt | No overview shown
+       expected: no metrics
+       observed: no metrics
+[PASS] all_missing_group.csv | Group C total
+       expected: No data (not 0)
+       observed: No data
+[PASS] all_missing_group.csv | Group A total
+       expected: 10
+       observed: 10
+[PASS] all_missing_group.csv | No-data note
+       expected: C listed as No data, not in chart
+       observed: ['1 category has only missing values in "value". They are listed as "No data" and are not in the chart.']
+[PASS] all_missing_group.csv | Chart contains only groups with data
+       expected: the 1 category that has data
+       observed: ['The chart shows the 1 category that has data.']
+[PASS] all test files | Test files unchanged by the app
+       expected: same checksums
+       observed: same
+Automated result: 23 passed, 0 failed
+
+==============================================================================
+PART B - BROWSER CHECKS (performed by Claude in Chrome, page inspected)
+Method: uploaded each test file into the running app at http://localhost:8502,
+then read the page text and looked at screenshots. Not just a server response.
+==============================================================================
+[PASS] spec.csv | Overview
+       expected: Rows 5, Columns 2, Extra duplicate rows 1
+       observed: Rows 5, Columns 2, Extra duplicate rows 1
+[PASS] spec.csv | Missing values table
+       expected: value: 1 missing, 20%
+       observed: value: 1, 20; category: 0, 0
+[PASS] spec.csv | Totals table
+       expected: A 30, B 10
+       observed: A 30 (2 rows), B 10 (3 rows, 1 missing)
+[PASS] spec.csv | Bar chart
+       expected: 2 bars, A=30 higher than B=10, axes labelled
+       observed: 2 blue bars, A at 30, B at 10; x: category, y: Sum of value
+[PASS] spec.csv | Missing-rows button
+       expected: label (1); click shows the B row
+       observed: label 'Show rows with missing values (1)'; click showed row 2: B, None; button changed to Hide
+[PASS] text_only.csv | Chart unavailable
+       expected: overview shown + clear message
+       observed: Rows 2, Columns 2; 'The chart is not available: this file has no numeric column...'
+[PASS] empty.csv | Empty file
+       expected: clear message, no overview
+       observed: 'The file is empty. Please upload a CSV file that has a header row and data.'
+[PASS] wrong_format.txt | Wrong file type
+       expected: clear message, no overview
+       observed: '"wrong_format.txt" is not a CSV file. Please upload a file whose name ends in .csv.'
+[PASS] all_missing_group.csv | All-missing group
+       expected: C = No data (not 0), not in chart
+       observed: Table: A 10, C No data (2 of 2 missing); chart has only A; note shown
+Browser result: 9 passed, 0 failed
+
+==============================================================================
+PART C - MANUAL CHECKS FOR YOU (NOT CHECKED)
+Claude used an automated upload, not your own mouse or file dialog.
+==============================================================================
+[NOT CHECKED] Upload with your own file picker
+       steps: Open http://localhost:8502, click Upload, choose check_dataset.csv. You see Rows 5, A 30, B 10.
+[NOT CHECKED] Drag and drop
+       steps: Drag a CSV file onto the upload box. The overview appears.
+[NOT CHECKED] Real course file
+       steps: Upload a real course CSV. Row and column counts match what a spreadsheet program shows.
+[NOT CHECKED] Readability on your screen
+       steps: Text is easy to read, buttons are blue (#201db4), background is white.
+[NOT CHECKED] Narrow window
+       steps: Make the browser window narrow. Nothing is cut off; tables can scroll sideways.
+
+==============================================================================
+FIXES AND NOTES
+==============================================================================
+- No check failed. One wording problem was found while reviewing the output:
+  with one category the chart note said 'The chart shows all 1 categories'.
+  app.py now says 'The chart shows the 1 category that has data.'
+  Affected checks were rerun: automated (all 23 passed again) and the
+  all_missing_group.csv browser check (new sentence shown).
+- Design, calculations and other features were not changed.
+- Project data: at 10:32, before this check started, the user replaced
+  check_dataset.csv with the test CSV from the request (confirmed by the user).
+  test_dataset.csv was also no longer in the folder; Claude did not remove it.
+  This check did not write to any data file in the project folder.
+
+==============================================================================
+SAVE STEP - 2026-10-22 10:42 +05
+==============================================================================
+[PASS] App restarted from project environment
+       command:  .venv/bin/streamlit run app.py --server.port 8502
+       observed: process /home/amir/Projects/AI_ML/Dataset_Explorer/.venv/bin/python ; health "ok" ; HTTP 200
+[PASS] requirements.txt matches installed .venv packages
+       observed: pip install -r requirements.txt --dry-run -> all already satisfied
+[PASS] Automated checks rerun after restart
+       observed: SUMMARY: 23 passed, 0 failed
+[PASS] Browser check after restart, project file check_dataset.csv (identical copy uploaded)
+       observed: Rows 5, Columns 2, Extra duplicate rows 1, missing-rows button (1),
+                 totals table A 30, B 10, chart with 2 bars
+[NOT CHECKED] Part C manual checks above: no results reported by the user yet.
+Git: this folder is not a Git repository, so no commit was made. Nothing was pushed or published.
+
+==============================================================================
+REDESIGN - 2026-10-22 11:23 +05
+==============================================================================
+Changed: page layout and theme only (app.py page section, .streamlit/config.toml).
+Calculation functions in app.py were not changed. Previous version saved at:
+  /tmp/claude-1000/-home-amir-Projects-AI-ML-Dataset-Explorer/6450d199-5527-4f97-8da2-0bdd08fba248/scratchpad/app_before_redesign.py
+[PASS] Automated checks on the redesigned page
+       observed: SUMMARY: 26 passed, 0 failed (the 23 earlier checks plus 3 new:
+                 merged columns table, "What we found" summary, three tabs)
+[PASS] Server responds after restart: health "ok", http://localhost:8502
+[PASS] Browser page text after uploading a test file (7 rows, 3 columns, 2 duplicates,
+       findings list shown, tabs shown)
+[PASS] Browser screenshot of the start page (no file): new fonts, layout and colors visible
+[NOT CHECKED] Visual look after a file is uploaded. Chrome screenshots timed out after
+       every upload in this session, also for the OLD app with the NEW theme; a control
+       test with the old app and old theme could not finish because the Chrome extension
+       disconnected. Cause not confirmed.
